@@ -1,0 +1,36 @@
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="config.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.0.1/mqtt.min.js"></script>
+  <script>
+
+  let url = "wss://e37872fcff474802ab10e499e46d04c8.s1.eu.hivemq.cloud";
+  const client  = mqtt.connect(url, options)
+
+
+client.on('error', function (err) {
+  console.log(err)
+  client.end()
+})
+
+client.on('connect', function () {
+  console.log('client connected:' + clientId)
+  client.subscribe('topic1', { qos: 0 })
+  
+  client.subscribe('Message1', { qos: 0 })
+  client.subscribe('Light1', { qos: 0 })
+})
+client.on('message', function (topic, message, packet) {
+  console.log('Received Message:= ' + message.toString() + '\nOn topic:= ' + topic)
+})
+  // Button click event handler
+
+</script>
+</head>
+<body>
+</body>
+</html>

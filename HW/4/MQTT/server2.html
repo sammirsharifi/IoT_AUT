@@ -1,0 +1,65 @@
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="config.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.0.1/mqtt.min.js"></script>
+  <script>
+  let url = "wss://e37872fcff474802ab10e499e46d04c8.s1.eu.hivemq.cloud";
+
+
+  const client  = mqtt.connect(url, options)
+
+
+client.on('error', function (err) {
+  console.log(err)
+  client.end()
+})
+
+client.on('connect', function () {
+  console.log('server connected:' + clientId)
+  client.publish('topic2', 'wss secure connection ', { qos: 0, retain: false })
+})
+
+  // Button click event handler
+
+   $(document).ready(function() {
+      $('#mqttButton').click(function() {
+        console.log('Button clicked!');
+		light_opt={
+			brightness:$("#s1").val(),
+			color:$("#c").val()
+		}
+		str=JSON. stringify(light_opt);
+		console.log(str);
+		    client.publish('Light2', str);
+		    client.publish('Message2', $('#s2').val());
+      });
+    });
+</script>
+</head>
+<body>
+<div class="row" style="text-align:center">
+<div class="col-sm-3" ><div style="width:100%;min-height:200px;border:1px;border-style: dotted;">
+<p style="padding-top:50px">changing the color of the billboard</p>
+<select id="c">
+<option>red</option>
+<option>green</option>
+<option>blue</option>
+<option>yellow</option>
+</select><br /><label for="s1">brightness:</label><input id="s1" type="text" placeholder="" value="1.0"/></div>
+</div>
+
+<div class="col-sm-3">
+<div style="width:100%;min-height:200px;border:1px;border-style: dotted;">
+<p style="padding-top:50px">changing the Text of the billboard</p>
+<br /><label for="s2">Text:</label><input id="s2" type="text" placeholder="" value="Text for the billboard"/></div>
+</div>
+<div class="col-sm-3">
+<button id="mqttButton" style="margin-top:50px">Send Message</button>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "TVremote",
+			"path": "../../../TVremote/arduino/TVremote"
+		}
+	],
+	"settings": {}
+}

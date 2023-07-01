@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"name": "Doors",
+			"path": "../../Doors"
+		},
+		{
+			"name": "smartDoor-Doors",
+			"path": "../../smartDoor-Doors"
+		}
+	],
+	"settings": {}
+}
